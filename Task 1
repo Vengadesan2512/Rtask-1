@@ -1,0 +1,86 @@
+(1)Differences Between HTTP/1.1 and HTTP/2
+       The Hypertext Transfer Protocol (HTTP) is the foundation of data communication on the World Wide Web. Over the years, it has evolved to meet the growing demands of the internet. HTTP/1.1, introduced in 1997, has been the workhorse of the web for decades. However, as web applications became more complex and resource-intensive, a need for a more efficient protocol emerged, leading to the introduction of HTTP/2 in 2015. In this blog, we will explore the key differences between HTTP/1.1 and HTTP/2.
+
+1. Multiplexing
+HTTP/1.1:
+In HTTP/1.1, each request/response pair is established over a separate TCP connection. This can lead to significant overhead and inefficiencies, especially when multiple resources need to be fetched simultaneously. To mitigate this, browsers often open multiple connections to the same server, which can lead to congestion and slower performance.
+
+HTTP/2:
+HTTP/2 introduces multiplexing, allowing multiple requests and responses to be sent over a single TCP connection simultaneously. This reduces the overhead associated with multiple connections and improves page load times by allowing multiple resources to be fetched concurrently without blocking.
+
+2. Header Compression
+HTTP/1.1:
+HTTP/1.1 headers are sent as plain text, and they can be quite large, especially with modern web applications that include various cookies, user agents, and other metadata. This can add significant overhead to each request.
+
+HTTP/2:
+HTTP/2 uses HPACK, a header compression algorithm, to compress headers before sending them. This reduces the size of the headers, leading to lower latency and reduced bandwidth usage, especially for applications with repetitive header data.
+
+3. Server Push
+HTTP/1.1:
+In HTTP/1.1, the server can only respond to requests made by the client. This means that if a client requests an HTML page that requires several additional resources (like CSS, JavaScript, images), it has to request each resource separately after parsing the HTML.
+
+HTTP/2:
+HTTP/2 introduces the concept of server push, allowing the server to proactively send resources to the client before they are requested. For instance, if the server knows that a specific CSS file and JavaScript file are always required with a particular HTML page, it can push these resources to the client along with the HTML, reducing the need for additional round-trip requests.
+
+4. Stream Prioritization
+HTTP/1.1:
+HTTP/1.1 does not support stream prioritization. All requests are treated equally, which can lead to inefficiencies if critical resources are delayed by less important ones.
+
+HTTP/2:
+HTTP/2 allows clients to assign priority to different streams. This means that more important resources (like critical CSS and JavaScript files) can be prioritized over less important ones (like images), ensuring that the most important content is loaded first.
+
+5. Binary Protocol
+HTTP/1.1:
+HTTP/1.1 is a text-based protocol, which means that commands and data are sent as plain text. This can lead to inefficiencies in parsing and processing the data, especially for complex or large-scale applications.
+
+HTTP/2:
+HTTP/2 is a binary protocol, meaning that commands and data are encoded in binary format. This makes it more efficient to parse and less error-prone compared to text-based communication. The binary framing layer in HTTP/2 improves performance and reliability.
+
+6. Connection Management
+HTTP/1.1:
+In HTTP/1.1, connections can be kept alive using the keep-alive header, but this is still less efficient compared to HTTP/2's approach. Connections in HTTP/1.1 are often limited, leading to potential bottlenecks.
+
+HTTP/2:
+HTTP/2 is designed to keep a single connection alive for the duration of the session, handling multiple requests and responses more efficiently within that single connection. This reduces the overhead of establishing and closing connections and improves overall performance.           
+----------------------------------------------------------------------------------------------------------------------------------------
+(2)Objects and Their Internal Representation in JavaScript
+       JavaScript is a versatile language, renowned for its flexibility and powerful features. At the core of JavaScript lies one of its most fundamental constructs: the object. Objects in JavaScript are incredibly versatile, acting as collections of properties and serving as the building blocks for more complex structures like arrays, functions, and even other objects. In this blog, we'll delve into what objects are in JavaScript, how they work internally, and why they are so crucial for effective JavaScript programming.
+
+What is an Object?
+In JavaScript, an object is a collection of properties, where each property is defined as a key-value pair. Properties can hold values of any type, including other objects, making objects a cornerstone of JavaScript's flexible data handling capabilities.
+
+Internal Representation of Objects :
+      Understanding how JavaScript handles objects internally can provide deeper insights into their performance and capabilities. Internally, JavaScript engines (like V8, used in Google Chrome and Node.js) use several sophisticated techniques to manage and optimize objects.
+
+Property Storage
+    When an object is created, the JavaScript engine assigns a hidden class or shape to the object. This shape helps the engine understand the structure of the object and optimize property access.
+
+    *Hidden Classes (Shapes): When an object is first created, the engine creates a hidden class for it. As properties are added or removed, new hidden classes are generated. This allows the engine to optimize property access by predicting the layout of the object.
+
+    *Inline Caches: To speed up property access, JavaScript engines use inline caches. These caches store the locations of properties after they are accessed for the first time, allowing subsequent accesses to be much faster.
+
+Property Attributes
+Each property in a JavaScript object has attributes that define its behavior. These include:
+
+           *Value: The actual data held by the property.
+           *Writable: Determines if the property's value can be changed.
+           *Enumerable: Indicates whether the property can be enumerated in a for...in loop.
+           *Configurable: Specifies if the property can be deleted or modified.
+Prototype Chain
+    JavaScript objects have a special hidden property called [[Prototype]], which references another object. This forms the basis of JavaScript's prototype-based inheritance. When you try to access a property on an object, the engine will first look for the property on the object itself. If it doesn't find it, it will continue searching up the prototype chain until it either finds the property or reaches the end of the chain.
+
+Performance Considerations
+     Understanding the internal workings of objects can help you write more efficient JavaScript code. Here are a few tips:
+
+         *Property Access: Accessing properties that are defined in the hidden class of an object is faster than accessing properties that cause hidden class changes.
+         *Object Freezing: Using Object.freeze() can improve performance by preventing modifications to the object, allowing the engine to optimize it further.
+         *Avoid Sparse Arrays: Arrays with non-sequential indices can be less efficient due to the way they are handled internally as objects.
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+(3) IP address, port, HTTP methods, MAC address
+       *IP Address: A unique numerical identifier assigned to each device connected to a network, allowing devices to communicate with each other.
+       *Port: A virtual point where network connections start and end, allowing different services on a single device to be accessed (e.g., HTTP uses port 80).
+       *HTTP Methods: Verbs used in HTTP to indicate the desired action, such as GET (retrieve data), POST (send data), PUT (update data), and DELETE (remove data).
+       *MAC Address: A hardware identifier assigned to a network interface card (NIC) that uniquely identifies a device on a local network.
+------------------------------------------------------------------------------------------------------------------------------------------
